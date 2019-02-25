@@ -1,0 +1,22 @@
+{
+  "name": "reset",
+  "version": "1.0.0",
+  "description": "Reset home page",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aimee-MacDonald/reset.git"
+  },
+  "author": "Aimee MacDonald",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Aimee-MacDonald/reset/issues"
+  },
+  "homepage": "https://github.com/Aimee-MacDonald/reset#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
