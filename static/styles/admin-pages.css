@@ -1,0 +1,72 @@
+body{
+  margin: 0;
+  background-color: pink;
+  display: flex;
+  flex-flow: nowrap column;
+  align-items: center;
+}
+
+h1{
+  margin: 0;
+}
+
+p{
+  margin: 0;
+}
+
+.container{
+  background-color: purple;
+  max-width: 50rem;
+  padding: 0.5rem;
+}
+
+#intro{
+  background-color: lime;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-between;
+  padding: 0.5rem;
+}
+
+#intro #profile{
+  background-color: orange;
+  width: 15rem;
+  height: 15rem;
+}
+
+#events{
+  background-color: blue;
+  display: flex;
+  flex-flow: wrap row;
+}
+
+#events .event{
+  background-color: orange;
+  width: 10rem;
+  height: 10rem;
+  margin: 1rem;
+}
+
+#newsletter{
+  background-color: green;
+  display: flex;
+  flex-flow: wrap row;
+  justify-content: space-around;
+}
+
+#newsletter .section{
+  background-color: red;
+  display: flex;
+  flex-flow: nowrap column;
+  align-items: flex-start;
+  width: 50%;
+}
+
+#newsletter input{
+  width: 100%;
+}
+
+#newsletter .checkbox{
+  display: flex;
+  flex-flow: nowrap row;
+}

@@ -20,3 +20,7 @@ app.get("/admin/register", (req, res) => {
 app.get("/admin/login", (req, res) => {
   res.status(200).sendFile(__dirname + "/views/admin-login.html");
 });
+
+app.get("/admin/pages", (req, res) => {
+  res.status(200).sendFile(__dirname + "/views/admin-pages.html");
+});
