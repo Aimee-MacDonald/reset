@@ -1,6 +1,10 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const path = require("path");
+
+app.set("views", path.join(__dirname, "/views"));
+app.set("view engine", "pug");
 
 app.use(express.static(__dirname + "/static"));
 
@@ -12,7 +16,7 @@ app.use(bodyParser.urlencoded({
 app.listen(process.env.PORT || 8080);
 
 app.get("/", (req, res) => {
-  res.status(200).sendFile(__dirname + "/views/index.html");
+  res.status(200).render("index");
 });
 
 app.get("/admin", (req, res) => {
@@ -20,7 +24,7 @@ app.get("/admin", (req, res) => {
 });
 
 app.get("/admin/register", (req, res) => {
-  res.status(200).sendFile(__dirname + "/views/admin-register.html");
+  res.status(200).render("admin-register");
 });
 
 app.post("/admin/auth/register", (req, res) => {
@@ -28,7 +32,7 @@ app.post("/admin/auth/register", (req, res) => {
 });
 
 app.get("/admin/login", (req, res) => {
-  res.status(200).sendFile(__dirname + "/views/admin-login.html");
+  res.status(200).render("admin-login");
 });
 
 app.post("/admin/auth/login", (req, res) => {
@@ -36,5 +40,5 @@ app.post("/admin/auth/login", (req, res) => {
 });
 
 app.get("/admin/pages", (req, res) => {
-  res.status(200).sendFile(__dirname + "/views/admin-pages.html");
+  res.status(200).render("admin-pages");
 });

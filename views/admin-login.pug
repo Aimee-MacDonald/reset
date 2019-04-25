@@ -1,0 +1,18 @@
+doctype html
+
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    meta(http-equiv="X-UA-Compatible", content="ie=edge")
+    link(rel="stylesheet", href="/styles/admin-login.css")
+    title Reset - Admin Login
+
+  body
+    h1 Reset
+    h2 Admin Login
+
+    form(action="/admin/auth/login", method="post")
+      input(type="email", name="email", id="email", placeholder="example@address.com", required)
+      input(type="password" name="password" id="password" placeholder="Admin Password" required)
+      button(type="submit" name="button") Login
