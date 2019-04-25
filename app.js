@@ -3,6 +3,8 @@ const app = express();
 const bodyParser = require("body-parser");
 const path = require("path");
 
+const admin = require(path.join(__dirname, "/routes/admin"));
+
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "pug");
 
@@ -13,32 +15,10 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
+app.use("/admin", admin);
+
 app.listen(process.env.PORT || 8080);
 
 app.get("/", (req, res) => {
   res.status(200).render("index");
-});
-
-app.get("/admin", (req, res) => {
-  res.redirect("/admin/register");
-});
-
-app.get("/admin/register", (req, res) => {
-  res.status(200).render("admin-register");
-});
-
-app.post("/admin/auth/register", (req, res) => {
-  res.status(200).send("<h1>" + req.body.name + "</h1>");
-});
-
-app.get("/admin/login", (req, res) => {
-  res.status(200).render("admin-login");
-});
-
-app.post("/admin/auth/login", (req, res) => {
-  res.status(200).send("<h1>" + req.body.email + "</h1>");
-});
-
-app.get("/admin/pages", (req, res) => {
-  res.status(200).render("admin-pages");
 });
