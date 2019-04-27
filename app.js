@@ -1,9 +1,15 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
 const bodyParser = require("body-parser");
 const path = require("path");
+const mongoose = require("mongoose");
+
+const siteAdmin = require(path.join(__dirname, "/dbmodels/siteAdmin"));
 
 const admin = require(path.join(__dirname, "/routes/admin"));
+
+mongoose.connect(process.env.ADMINDB);
 
 app.set("views", path.join(__dirname, "/views"));
 app.set("view engine", "pug");
