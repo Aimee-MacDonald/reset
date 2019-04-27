@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const path = require("path");
+const bcrypt = require("bcryptjs");
 
 const siteAdmin = require(path.join(__dirname, "../dbmodels/siteAdmin"));
 
@@ -13,7 +14,11 @@ router.get("/", (req, res) => {
 });
 
 router.get("/pages", (req, res) => {
-  res.status(200).render("admin-pages");
+  if(req.isAuthenticated()){
+    res.status(200).render("admin-pages");
+  } else {
+    res.redirect("/admin/login");
+  }
 });
 
 router.get("/register", (req, res) => {
@@ -43,7 +48,51 @@ router.post("/auth/register", (req, res) => {
 });
 
 router.post("/auth/login", (req, res) => {
-  res.status(200).send("<h1>" + req.body.email + "</h1>");
+  siteAdmin.find({email: req.body.email}, function(err, docs){
+    if(err) throw err;
+
+    if(docs.length > 0){
+      bcrypt.compare(req.body.password, docs[0].password, function(err, resp){
+        if(err) throw err;
+
+        if(resp){
+          req.login(docs[0]._id, function(err){
+            if(err) throw err;
+          });
+          res.redirect("/admin/pages");
+        } else {
+          res.redirect("/admin/login");
+        }
+      });
+    } else {
+      res.redirect("/admin");
+    }
+  });
 });
+
+/*
+router.post("/login", function(req, res, next){
+  User.find({email: req.body.em}, function(err, docs){
+    if(err) throw err;
+
+    if(docs.length > 0){
+      bcrypt.compare(req.body.pw, docs[0].password, function(err, resp){
+        if(err) throw err;
+
+        if(resp){
+          req.login(docs[0]._id, function(err){
+            if(err) throw err;
+          });
+          res.redirect("/journal/read");
+        } else {
+          res.redirect("/auth/login");
+        }
+      });
+    } else {
+      res.redirect("/auth/login");
+    }
+  });
+});
+*/
 
 module.exports = router;
