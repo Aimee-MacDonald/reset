@@ -1,5 +1,8 @@
 const express = require("express");
 const router = express.Router();
+const path = require("path");
+
+const siteAdmin = require(path.join(__dirname, "../dbmodels/siteAdmin"));
 
 router.get("/", (req, res) => {
   res.redirect("/admin/login");
@@ -18,7 +21,16 @@ router.get("/login", (req, res) => {
 });
 
 router.post("/auth/register", (req, res) => {
-  res.status(200).send("<h1>" + req.body.name + "</h1>");
+  var siteadmin = new siteAdmin({
+    'username': req.body.name,
+    'email': req.body.email,
+    'password': req.body.password,
+    'homepage': "www.reset-live.com"
+  });
+
+  siteadmin.save(err => {
+    if(err) throw err;
+  });
 });
 
 router.post("/auth/login", (req, res) => {
