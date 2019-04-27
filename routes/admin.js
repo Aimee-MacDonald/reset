@@ -5,7 +5,11 @@ const path = require("path");
 const siteAdmin = require(path.join(__dirname, "../dbmodels/siteAdmin"));
 
 router.get("/", (req, res) => {
-  res.redirect("/admin/login");
+  if(req.isAuthenticated()){
+    res.redirect("/admin/pages");
+  } else {
+    res.redirect("/admin/login");
+  }
 });
 
 router.get("/pages", (req, res) => {
@@ -30,6 +34,11 @@ router.post("/auth/register", (req, res) => {
 
   siteadmin.save(err => {
     if(err) throw err;
+    req.login(siteadmin._id, err => {
+      if(err) throw err;
+    });
+
+    res.redirect("/admin");
   });
 });
 
