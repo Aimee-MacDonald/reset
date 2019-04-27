@@ -29,7 +29,7 @@ router.post("/auth/register", (req, res) => {
     'username': req.body.name,
     'email': req.body.email,
     'password': req.body.password,
-    'homepage': "www.reset-live.com"
+    'homepage': process.env.HOMEPAGE
   });
 
   siteadmin.save(err => {
