@@ -26,7 +26,7 @@ router.get("/register", (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  res.status(200).render("admin-login");
+  res.status(200).render("admin-login", {csrfToken: req.csrfToken()});
 });
 
 router.get("/auth/logout", (req, res) => {

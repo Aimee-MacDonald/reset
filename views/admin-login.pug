@@ -15,4 +15,5 @@ html(lang="en")
     form(action="/admin/auth/login", method="post")
       input(type="email", name="email", id="email", placeholder="example@address.com", required)
       input(type="password" name="password" id="password" placeholder="Admin Password" required)
+      input(type="hidden", name="_csrf", value= csrfToken)
       button(type="submit" name="button") Login

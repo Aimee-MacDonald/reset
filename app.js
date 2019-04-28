@@ -6,6 +6,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const session = require("express-session");
+const csurf = require("csurf");
 
 const siteAdmin = require(path.join(__dirname, "/dbmodels/siteAdmin"));
 
@@ -24,13 +25,15 @@ app.use(session({
   saveUninitialized: false
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
   extended: true
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(csurf());
 
 app.use("/admin", admin);
 
