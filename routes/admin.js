@@ -22,7 +22,7 @@ router.get("/pages", (req, res) => {
 });
 
 router.get("/register", (req, res) => {
-  res.status(200).render("admin-register");
+  res.status(200).render("admin-register", {csrfToken: req.csrfToken()});
 });
 
 router.get("/login", (req, res) => {

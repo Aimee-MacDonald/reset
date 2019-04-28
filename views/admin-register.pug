@@ -9,10 +9,8 @@ html(lang="en")
     title Reset - Admin Register
 
   body
-    h1 Reset
-    h2 Admin Register
-
     form(action="/admin/auth/register", method="post")
+      h1 Admin Register
       label(for="name") Name
       input(type="text", name="name", id="name", placeholder="Admin Name", required)
       label(for="email") Email
@@ -21,5 +19,5 @@ html(lang="en")
       input(type="password", name="password", id="password", placeholder="Admin, Password" required)
       label(for="confirm-password") Confirm Password
       input(type="password", name="confirm-password", id="confirm-password", placeholder="Confirm Admin Password", required)
+      input(type="hidden", name="_csrf", value= csrfToken)
       button(type="submit") Register
-      
