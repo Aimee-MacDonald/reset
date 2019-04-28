@@ -10,10 +10,13 @@ html(lang="en")
     title Reset-Live - Admin
 
   body
-    h1 Reset-Live
-    a(href="/admin/auth/logout")
-      p Logout
-    a(href="/admin/pages")
-      p View and Apply new Updates
-    a(href="/admin/workshops")
-      p Manage Upcoming Workshops
+    header
+      h1 Reset-Live
+      a(href="/admin/auth/logout")
+        p Logout
+
+    div(id="admin-tools")
+      a(href="/admin/pages")
+        p View and Apply new Updates
+      a(href="/admin/workshops")
+        p Manage Upcoming Workshops
