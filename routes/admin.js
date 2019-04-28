@@ -7,7 +7,7 @@ const siteAdmin = require(path.join(__dirname, "../dbmodels/siteAdmin"));
 
 router.get("/", (req, res) => {
   if(req.isAuthenticated()){
-    res.redirect("/admin/pages");
+    res.status(200).render("admin");
   } else {
     res.redirect("/admin/login");
   }
@@ -59,7 +59,7 @@ router.post("/auth/login", (req, res) => {
           req.login(docs[0]._id, function(err){
             if(err) throw err;
           });
-          res.redirect("/admin/pages");
+          res.redirect("/admin");
         } else {
           res.redirect("/admin/login");
         }
@@ -69,30 +69,5 @@ router.post("/auth/login", (req, res) => {
     }
   });
 });
-
-/*
-router.post("/login", function(req, res, next){
-  User.find({email: req.body.em}, function(err, docs){
-    if(err) throw err;
-
-    if(docs.length > 0){
-      bcrypt.compare(req.body.pw, docs[0].password, function(err, resp){
-        if(err) throw err;
-
-        if(resp){
-          req.login(docs[0]._id, function(err){
-            if(err) throw err;
-          });
-          res.redirect("/journal/read");
-        } else {
-          res.redirect("/auth/login");
-        }
-      });
-    } else {
-      res.redirect("/auth/login");
-    }
-  });
-});
-*/
 
 module.exports = router;
