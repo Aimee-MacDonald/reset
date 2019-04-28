@@ -9,11 +9,11 @@ html(lang="en")
     title Reset - Admin Login
 
   body
-    h1 Reset
-    h2 Admin Login
-
     form(action="/admin/auth/login", method="post")
+      h1 Admin Login
+      label(for="email") Email
       input(type="email", name="email", id="email", placeholder="example@address.com", required)
+      label(for="password") Password
       input(type="password" name="password" id="password" placeholder="Admin Password" required)
       input(type="hidden", name="_csrf", value= csrfToken)
       button(type="submit" name="button") Login
