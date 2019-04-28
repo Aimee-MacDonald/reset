@@ -29,6 +29,11 @@ router.get("/login", (req, res) => {
   res.status(200).render("admin-login");
 });
 
+router.get("/auth/logout", (req, res) => {
+  req.logout();
+  res.redirect("/");
+});
+
 router.post("/auth/register", (req, res) => {
   var siteadmin = new siteAdmin({
     'username': req.body.name,
