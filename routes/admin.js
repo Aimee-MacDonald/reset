@@ -34,6 +34,14 @@ router.get("/auth/logout", (req, res) => {
   res.redirect("/");
 });
 
+router.get("/workshops", (req, res) => {
+  if(req.isAuthenticated()){
+    res.status(200).render("admin-workshops");
+  } else {
+    res.redirect("/admin/login");
+  }
+});
+
 router.post("/auth/register", (req, res) => {
   var siteadmin = new siteAdmin({
     'username': req.body.name,
